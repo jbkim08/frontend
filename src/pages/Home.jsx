@@ -1,4 +1,18 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 function Home() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    //시작시 유저들 가져오기
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const result = await axios.get('http://localhost:8080/users');
+    console.log(result);
+  };
   return (
     <div className="container">
       <table className="table border shadow my-4">
