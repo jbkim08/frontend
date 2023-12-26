@@ -1,7 +1,12 @@
 import './App.css';
+import Nabvar from './layout/Nabvar';
 
 function App() {
-  return <>앱</>;
+  return (
+    <div>
+      <Nabvar />
+    </div>
+  );
 }
 
 export default App;
