@@ -1,15 +1,25 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function EditUser() {
   const navigate = useNavigate();
+  const { id } = useParams(); //pathVariable 에 id값을 받기
+
   const [user, setUser] = useState({
     name: '',
     username: '',
     email: '',
   });
   const { name, username, email } = user; //유저객의 속성을 구조할당분해
+  //미리 업데이트 전 유저값을 가져옴
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8080/users/${id}`);
+    setUser(result.data);
+  };
+  useEffect(() => {
+    loadUser(); //시작시 유저데이터 불러오기
+  }, []);
   const onInputChange = (e) => {
     setUser({
       ...user,
@@ -22,7 +32,7 @@ function EditUser() {
       alert('입력창에 내용을 입력해주세요');
       return;
     }
-    await axios.post('http://localhost:8080/users', user);
+    await axios.put(`http://localhost:8080/users/${id}`, user);
     navigate('/'); //홈으로
   };
   return (
@@ -76,7 +86,7 @@ function EditUser() {
             {/* 가입 취소 버튼 */}
             <div className="mb-3 text-center">
               <button type="submit" className="btn btn-outline-primary px-3 mx-2">
-                가입
+                수정
               </button>
               <Link to="/" className="btn btn-outline-danger px-3 mx-2">
                 취소
