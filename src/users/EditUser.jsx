@@ -14,7 +14,7 @@ function EditUser() {
   const { name, username, email } = user; //유저객의 속성을 구조할당분해
   //미리 업데이트 전 유저값을 가져옴
   const loadUser = async () => {
-    const result = await axios.get(`${import.meta.env.USER_API}/users/${id}`);
+    const result = await axios.get(`${import.meta.env.VITE_USER_API}/users/${id}`);
     setUser(result.data);
   };
   useEffect(() => {
@@ -32,7 +32,7 @@ function EditUser() {
       alert('입력창에 내용을 입력해주세요');
       return;
     }
-    await axios.put(`${import.meta.env.USER_API}/users/${id}`, user);
+    await axios.put(`${import.meta.env.VITE_USER_API}/users/${id}`, user);
     navigate('/'); //홈으로
   };
   return (

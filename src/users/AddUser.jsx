@@ -22,7 +22,7 @@ function AddUser() {
       alert('입력창에 내용을 입력해주세요');
       return;
     }
-    await axios.post(`${import.meta.env.USER_API}/users`, user);
+    await axios.post(`${import.meta.env.VITE_USER_API}/users`, user);
     navigate('/'); //홈으로
   };
   return (

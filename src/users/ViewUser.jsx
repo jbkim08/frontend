@@ -13,7 +13,7 @@ const ViewUser = () => {
   const { name, username, email } = user;
 
   const loadUser = async () => {
-    const result = await axios.get(`${import.meta.env.USER_API}/users/${id}`);
+    const result = await axios.get(`${import.meta.env.VITE_USER_API}/users/${id}`);
     setUser(result.data);
   };
   useEffect(() => {
