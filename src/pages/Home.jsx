@@ -11,13 +11,13 @@ function Home() {
   }, []);
 
   const getUsers = async () => {
-    const result = await axios.get(`${process.env.USER_API}/users`);
+    const result = await axios.get(`${import.meta.env.USER_API}/users`);
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
     if (confirm('정말로 삭제하겠습니까?')) {
-      await axios.delete(`${process.env.USER_API}/users/${id}`);
+      await axios.delete(`${import.meta.env.USER_API}/users/${id}`);
       getUsers(); //삭제후 새로 유저데이터를 받아옴
     }
   };
