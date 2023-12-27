@@ -13,7 +13,7 @@ const ViewUser = () => {
   const { name, username, email } = user;
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/users/${id}`);
+    const result = await axios.get(`${process.env.USER_API}/users/${id}`);
     setUser(result.data);
   };
   useEffect(() => {
