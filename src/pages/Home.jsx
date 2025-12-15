@@ -3,7 +3,7 @@ import React from "react";
 export default function Home() {
   return (
     <div className="container">
-      <table class="table">
+      <table class="table table-hover border table-border shadow my-4">
         <thead>
           <tr>
             <th scope="col">#</th>
