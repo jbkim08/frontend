@@ -21,6 +21,7 @@ export default function Home() {
             <th scope="col">이름</th>
             <th scope="col">유저네임</th>
             <th scope="col">이메일</th>
+            <th scope="col">액션</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@ export default function Home() {
               <td>{user.name}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
+              <td>
+                <button className="btn btn-outline-secondary mx-2">보기</button>
+                <button className="btn btn-outline-warning mx-2">수정</button>
+                <button className="btn btn-outline-danger mx-2">삭제</button>
+              </td>
             </tr>
           ))}
         </tbody>
