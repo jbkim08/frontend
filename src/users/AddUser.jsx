@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AddUser() {
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    email: "",
+  });
+  const { name, username, email } = user; //객체 분해(객체 밖으로 변수들을 꺼냄)
+
+  //모든 입력창의 값을 업데이트
+  const onInputChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div className="container">
       <div className="row">
@@ -14,6 +28,8 @@ export default function AddUser() {
             <input
               type="text"
               id="name"
+              value={name}
+              onChange={onInputChange}
               className="form-control"
               placeholder="이름 입력"
               name="name"
@@ -26,18 +42,22 @@ export default function AddUser() {
             <input
               type="text"
               id="username"
+              value={username}
+              onChange={onInputChange}
               className="form-control"
               placeholder="유저네임 입력"
               name="username"
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="name" className="form-label">
+            <label htmlFor="email" className="form-label">
               이메일
             </label>
             <input
               type="text"
               id="email"
+              value={email}
+              onChange={onInputChange}
               className="form-control"
               placeholder="이메일 입력"
               name="email"
