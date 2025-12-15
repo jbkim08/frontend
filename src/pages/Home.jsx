@@ -1,9 +1,17 @@
-import React from "react";
+import axios from "axios"; //액시오스 객체
+import { useState } from "react";
 
 export default function Home() {
+  const [users, setUsers] = useState([]); //유저객체 배열
+  //백엔드에서 유저들을 가져오는 함수
+  const loadUsers = async () => {
+    const result = await axios.get("http://localhost:8080/users");
+    console.log(result);
+  };
+  loadUsers();
   return (
     <div className="container">
-      <table class="table table-hover border table-border shadow my-4">
+      <table className="table table-hover border table-border shadow my-4">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -27,7 +35,7 @@ export default function Home() {
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
+            <td colSpan="2">Larry the Bird</td>
             <td>@twitter</td>
           </tr>
         </tbody>
