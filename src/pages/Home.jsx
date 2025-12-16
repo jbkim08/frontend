@@ -1,5 +1,6 @@
 import axios from "axios"; //액시오스 객체
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [users, setUsers] = useState([]); //유저객체 배열
@@ -33,7 +34,12 @@ export default function Home() {
               <td>{user.email}</td>
               <td>
                 <button className="btn btn-outline-secondary mx-2">보기</button>
-                <button className="btn btn-outline-warning mx-2">수정</button>
+                <Link
+                  to={`/edituser/${user.id}`}
+                  className="btn btn-outline-warning mx-2"
+                >
+                  수정
+                </Link>
                 <button className="btn btn-outline-danger mx-2">삭제</button>
               </td>
             </tr>
