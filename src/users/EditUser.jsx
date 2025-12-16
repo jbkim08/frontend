@@ -1,15 +1,24 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function EditUser() {
   const navigate = useNavigate(); //이동객체
+  const { id } = useParams(); //주소변수 id를 가져오기
   const [user, setUser] = useState({
     name: "",
     username: "",
     email: "",
   });
   const { name, username, email } = user; //객체 분해(객체 밖으로 변수들을 꺼냄)
+  //id로 유저 정보를 가져오는 함수
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8080/users/${id}`);
+    setUser(result.data);
+  };
+  useEffect(() => {
+    loadUser();
+  }, []); //처음 한번 실행
 
   //모든 입력창의 값을 업데이트
   const onInputChange = (e) => {
@@ -28,7 +37,7 @@ export default function EditUser() {
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">가입 하기</h2>
+          <h2 className="text-center m-4">수정 하기</h2>
           <form onSubmit={onSubmit}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
@@ -80,7 +89,7 @@ export default function EditUser() {
                 type="submit"
                 className="btn btn-outline-primary px-3 mx-2"
               >
-                가입
+                수정
               </button>
               <Link to="/" className="btn btn-outline-danger px-3 mx-2">
                 취소
